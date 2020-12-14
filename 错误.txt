@@ -1,0 +1,877 @@
+1. vue 的选项有哪些？
+ 
+2. vue写一个翻转字符串计算
+ 
+3. vue 对象监听 num对象 
+
+4. vue 自定指令让input自动获取焦点
+
+5. vue 过滤让小数点保留位
+ 
+6. vue 动画组件是？自动创建哪些class
+
+7. 创建并使用一个vue组件
+
+8. cmd 常用命名
+切换盘符 盘符： 
+切换目录 cd 目录 cd ../上一层   cd /根目录
+创建目录  md 文件夹  md/s/g
+删除目录   rd 文件名  
+删除文件   del 文件名 del/*.*
+移动文件   move 路径 文件名
+拷贝目录  copy 路径 文件名
+查看ip           ipconfig
+查看是否连接   ping  主机
+结束命令状态   ctrl + c
+清除屏幕       cls
+历史记录      上下箭头
+快捷提示      tab 
+
+9. 版本号5.3.4  X.y.z 分别代表什么
+   X  破坏兼容性的大版本
+   y   不破坏兼容性的新功能
+   z    不破坏兼容性的修复
+
+
+10 .npm命令
+初始化  npm init   
+安装  
+npm install
+npm install 包名 --save	
+npm install 包名 -S      	
+npm install 包名 --save-dev
+npm install 包名 -D
+npm i 包名  
+卸载
+ npm uninstall
+更新
+ npm update
+全局安装
+npm install -g  
+
+列表
+ npm ls
+ npm ls --depth=0
+
+
+
+
+
+
+
+
+
+
+
+
+
+ vue 的参数
+模板选择器  el
+模板 template
+数据 data
+方法 methods
+计算 computed
+ 监听 watch
+ 自定义指令 directives
+过滤 filters
+创建完毕 created
+组件 components
+属性 props
+
+
+Vue 生命周期
+  创建前后 beforeCreate created
+  挂载前后 beforeMount mounted
+  更新前后 beforeUpdate updated
+  销毁前后 beforeDestroy destroyed
+ created 常用于发起ajax 定时器开启 事件挂载 可以获取到当前实例的this
+ mounted 常用dom操作
+ beforeDestroy 常用于移除事件监听，定时器
+
+2. Vue $router 和$route的区别
+$router 指代整个路由
+             可以获取路由的相关方法
+             go（） 跳转
+             back （）返回
+             forward() 前进
+             push（）跳转
+             replace（）替换
+ 
+$route  当前匹配的路由，可以在$route 获取当前匹配路由信息
+            params 参数
+            path 路径
+            pullpath全路径
+            query查询参数
+            name 当前路由的名称
+
+
+3. Vue 路由如何实现传参的
+	配置：
+                 {path:"/produce/:id",component:Produce}
+                传递参数
+                <router-link to="/produce/abc">
+               获取
+               this.$route.params.id
+
+4. Vue 如何实现子路由的
+          配置
+         {
+	path:"/Parent",
+	componet:Parent,
+	children:[
+		{path:"son1",component:Son1},
+		{path:"son2",component:Son2}
+		]}
+        Parent.Vue
+       <router-link="/parent/son1">
+       <router-view/> 存放子路由的
+5. Vue重定向，别名，404
+   {path:"xxx",redirect:"yyy"} 重定向
+   {alias:["/home","/index","/main"]} 别名
+    404 需要配置在最后面
+   {path:"*",component:Nomatch}
+
+6. 浏览器的同源安全策略是什么
+当文件请求服务资源的时候，要求当前文件与服务器地址是同源
+同源：端口一致，协议一致，域名一致，子域名一致
+
+7. 什么是跨域，如果实现跨域
+ 跨域，绕过浏览器的同源策略，获取服务资源（需要后端允许）
+1. jsonp跨域（script标签src属性没有同源策略限制）
+2. 响应头允许跨域 (Cros跨域) Access-Control-Allow-Origin: *
+3. 服务器代理跨域（向自己服务请求数据时候，服务器再去向真正的地址获取资源，返回给浏览器）
+4. 。。。。
+
+8. axios 请求方式
+axios({
+ url:"地址"，
+method:"POST|GET",
+params:"GET传参，对象",
+data:"POST传参对象"
+headers:{请求头}
+.....
+})
+axios.get(url,参数,配置)
+axios.post(url,参数，配置)
+
+headers请求头
+
+POST 默认请求头 用于json对象数据
+"Content-Type":"application/json"
+GET 默认请求头，拥有方式url编码形式数据（name=mumu&age=18）
+"Content-Type":"application/x-x-www-form-urlencoded”
+
+9. 代理配置
+vue.config.js (修改需要重启服务器)
+module.export = {
+	devServer:{
+	proxy:{
+	     “标识符，就是域名一个字符”:{
+		target:"目标"，
+		changeOrgin:true,
+		
+        }
+	}
+     }
+}
+
+onProxyReq(proxyReq, req, res) { 
+      //额外添加请求头
+      proxyReq.setHeader('Referer', 'https://m.mi.com/'); 
+ }
+
+
+元素尺寸：
+包括边框的高  offsetHeight
+相对于父元素左边距离   offsetLeft
+可视区域高   clientHeight
+元素左边滚动距离 scrollLeft
+内容实际高  scrollHeight
+
+
+
+
+
+vue 的参数
+el
+data
+methods
+directives
+props
+computed
+components
+watch
+filters
+template
+
+生命周期钩子函数
+
+beforeCreate
+created
+beforeMount
+mounted
+beforeUpdate
+updated
+beforeDestroy
+destroyed
+路由的传参配置
+<path:"/produce/:id",component:Produce>
+<router-link to="/produce/abc" >
+$route.params.id
+
+vue $router有哪些方法 $route 有哪些属性
+$router
+.go()
+.back()
+.replace()
+.foward()
+.push()
+
+
+
+$route
+.name
+.fullpath
+.path
+.query
+.params
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+vue 生命周期
+beforeCreate
+created
+beforeMount
+mounted
+beforeUpdate
+updated
+beforeDestory
+destoryed
+
+vue option选项有哪些
+el
+data
+methods
+filters
+watch
+props
+directives
+template
+computed
+components
+
+
+
+instanceof
+
+function deep( obj ){
+  if(typeof obj =='object' &&typeof obj !=null){
+      if( obj.instanceof=='array'){
+        var n = [] 
+        for( i in obj){
+           n[i] =deep( obj[i] )
+        }
+        return n
+       } else{
+    
+        var o = {}
+        for( i in obj){
+           o[i] =deep( obj[i] )
+        }
+        return o
+
+       }    
+}else{
+ return obj
+
+}
+
+
+}
+
+
+SyntaxError: C:\myvue\src\views\User\index.vue: Unexpected token, expected "," 
+
+语法错误：
+文件地址： C:\myvue\src\views\User\index.vue:
+
+Unexpected token,
+不期望的 标记符号
+
+expected 期望 一个“,”
+
+(21:1) 
+在21行第一个字符
+
+
+
+TypeError: Cannot read property 'M_LoginID' of undefined
+类型错误：在undefined上没有发现一个M_LoginID这个属性
+obj.M_LoginID  obj值是undefined
+
+
+ Property or method "users" is not defined on the instance but referenced during render. 
+Make sure that this property is reactive, 
+either in the data option, or for class-based components,
+ by initializing the property.
+
+属性或者方法 users 没有定义在实例上面，但是在渲染过程中已经被引用
+请确保这个属性是响应式的
+或者 在data属性里面
+或者 基于class的组件里面
+被初始化的属性
+
+         <Index>  错误出在Index.vue文件里面
+    <App>
+<Root>
+
+Uncaught Error: Cannot find module '../../utils/rquest.js'
+未捕获错误：不能找到模块  '../../utils/rquest.js'   （导入这个模块的时候找不到）
+
+1. 如果是相对路径  ./ ../开头 大概率地址错误，单词名称错误
+2. 如果不带相对路径  大概率 没有安装 需要要安装
+
+
+(app.js:854) app.js:151)   (index.vue?0b17:1)
+
+ ./src/views/Category.vue?vue&type=template&id=4d5aa038&
+问题发生在Category.vue 的 模板里面
+Errors compiling template: 
+编译模块错误：
+
+Component template should contain exactly one root element. 
+If you are using v-if on multiple elements, use v-else-if to chain them instead.
+组件 模板 应该保护 唯一一个 根节点
+如果你用v-if 在多个元素， 使用v-elseif to 连接 去替换他们
+
+
+[Vue warn]: Avoid using non-primitive value as key, use string/number value instead.
+Vue警告  避免使用  引用类似作为key  应该使用字符串/数字值代替 
+（key的值绑定错了）
+
+ [Vue warn]: Duplicate keys detected: '[object Object]'. This may cause an update error.
+Vue警告    重复的key值被检测到了 '[object Object]'    这个可能会引发更新错误
+
+found in 发现在
+
+<Category> at src/views/Category.vue
+
+
+O2O  Online To Offline的缩写即在线离线/线上到线下
+B2B   B2B（也有写成 BTB，是Business-to-Business的缩写）
+C2C  C2C是电子商务的专业用语，意思是个人与个人之间的电子商务，其中C指的是消费者，
+B2C   B2C是指电子商务的一种模式，也是直接面向消费者销售产品和服务商业零售模式。
+p2P  P2P是英文peer to peer lending（或peer-to-peer）的缩写
+toB   to B产品、后台产品和后端产品
+toC
+BS架构  B/S结构（Browser/Server，浏览器/服务bai器模式du）
+CS价格架构 服务器-客户机，即Client-Server(C/S)结构。C/S结构通常采取两层结构。
+Q1
+Q2
+Q3
+Q4  Q1是指一季度：quarter 1st；
+
+PM 产品
+RD 研发
+FE 前端
+UI 用户界面
+UX 用户体验
+UED 用户体验
+QA 测试
+OP 运营
+DB 数据管理
+
+PRD
+　　产品需求文档（Product Requirements Document）
+
+MRD
+　　市场需求文档（Market Requirements Document）
+BRD 商业需要文档
+
+1. vue 组件传参方式
+父子关系
+    父传子 props
+    子传夫 事件 $emit
+    $parent 父组件
+    $children 子组件里面
+    $refs. 获取子组件
+非父子关系
+    利用一个空Vue实例
+   import  Vue from ‘vue’
+  var bus  = new Vue（）
+   export default  bus；
+
+  传递 
+   bus.$emit("事件名",值)
+   bus.$on("事件名",function($event){})
+
+2. vue 如何或者 当前路由的参数与查询参数
+   this.$route.params
+   this.$route.query
+
+3. vue 组件（Vant）使用步骤
+   安装： npm i vant -S
+    导入
+               import Vant from ‘vant’
+              Vue.use(Vant)
+    使用   <van-button>
+4. Promise 简述
+    Promise ES6 新增的一个对象，
+    解决问题，异步编程中出现的回调地狱问题
+   then 逐步执行
+   catch 捕获错误
+  
+    Promise 三个状态  resolve 解决， reject 拒绝
+    当resolve 状态  .then函数会被执行
+   当reject 状态     .catch 会被回调
+
+  Promise.all    多个异步，执行所有
+  Promise.race 多个异步 执行最快的哪个
+   
+
+1. query参数妙用
+2. 购物遍历
+3. 路由守卫  x
+
+$route 有哪些属性？
+query
+path
+fullpath
+name
+params
+meta
+ 	<div style="padding: 10px;"><input type="text" ng-model="stdin" placeholder="输入内容" id="form-control"/></div>
+<p ng-if="window.plus">
+ <button class="button button-small button-positive button-outline" ng-click="switchScreen()"  style="padding:1px 2px;font-size:9px">切换屏幕方向</button>
+</p>
+
+<iframe allowfullscreen="true" border="0" frameborder="no" framespacing="0" height="220" scrolling="no" src="//player.bilibili.com/player.html?aid=497918379&amp;bvid=BV1HK411577E&amp;cid=191260466&amp;page=19&amp;high_quality=1" width="100%"></iframe>
+$scope.orientation='portrait-primary';
+			$scope.switchScreen=function(){
+			 
+				plus.screen.unlockOrientation();
+				if($scope.orientation=='portrait-primary'){
+					
+					
+					plus.screen.lockOrientation("landscape-primary");
+					$scope.orientation='landscape-primary';
+				}else {
+					
+					plus.screen.lockOrientation("portrait-primary") 
+					$scope.orientation='portrait-primary';
+					
+				}
+				 
+			}
+
+
+   <div class="col-25 tog">
+	     <ion-toggle     
+			style="border:none;  padding-right:3px; min-height:44px;"
+		 ng-change="switchScreen()"
+	                     ng-model="orientation"
+	                     ng-true-value="'landscape-primary'"
+	                     ng-false-value="'portrait-primary'">	 
+								  
+	   </ion-toggle>
+		 <span> 横屏</span>
+		   
+	    
+	   
+
+
+
+
+
+   
+  .nav-course a,
+  .nav-course .tog
+  {
+      text-decoration: none;
+      color:#484848;
+      font-size:0.6em;
+      text-align: center;
+      border-left:1px solid #f0f0f0;
+      border-bottom:1px solid #f0f0f0;
+      margin-left: -1px;
+      margin-bottom: -1px;
+     }  
+  .nav-course a img{
+    width: 50%;
+    clear: both;
+    display: block;
+    margin: 3px auto;
+    margin-top: 6px;
+    border-radius: 10%;
+    overflow: hidden;
+  }  
+   .nav-course a span,
+   .nav-course .tog span{
+    display: block;
+    margin-bottom:5px;
+   } 	
+   .tog .toggle{ }
+
+
+
+
+1.  $route 有哪些常见的属性
+ params
+fullpath
+path
+meta
+query
+name
+
+2. 路由守卫
+ 组件内部
+beforeRouterEnter
+beforeRouterLeave
+beforeRouterUpdate 
+全局
+beforeEach
+afterEach
+   独享
+beforeEnter
+
+
+Promise
+jsonp与跨域
+重新的封装axios
+对象模块的导入出导出
+
+
+Elements 元素节点
+Source源
+console 输出
+netWork 网络
+Application 程序
+
+All 所有
+XHR XMLHTTPRequest（ajax）
+
+General一般
+Response Headers响应头
+Request Headers 请求头
+Form Data 表单数据
+
+
+headers头信息
+preview 预览
+Respons 响应
+
+
+当ajax 发送错误时候
+1. 查看 当前请求地址 RequestURL 是否预期
+2. 方法  Request Methods 是否预期
+3. Request Headers 请求头 content-type是否预期
+4. FormData 发送请求参数是否预期
+5. preview 响应的数据是否预期
+
+遇见错误我兴奋，我要去阅读错误，解决问题
+
+
+
+
+
+ 
+  
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+vuex 的模块有哪些
+vue模块		vue组件中使用		vue组件使用映射方法
+
+state 状态		$store.state		mapState
+getters 获取器	$store.getters		mapGetters
+actions 动作              $store.dispatch(xxx,参数)	mapActions
+mutations 改变	$store.commit(xxx,参数)	mapMutations	
+modules  模块
+
+ 
+什么情况下需要使用vuex actions 和mutations区别
+当一个数据需要全局，或者多个页面，组件使用，可以考虑用vuex
+当数据是异步的，并且数据需要在多个组件中使用 考虑使用 actions
+actions可以异步操作 mutations不能
+
+
+1. websocket  腾讯核心科技（聊天） 2
+* 2. webpack（面试高发区）3
+3. ElementUI 2
+4. Vue3.0 2
+5. vue 高级 2天
+5. LBS（地理位置服务）2
+* 6. react        8
+7. 大数据可视化 3
+* 8. 小程序     6
+9. 微信网页开发（微信接口）1
+* 10. uni-app  4
+11 面试题精讲  4
+12 git svn 2天
+
+Vue 全家桶我都会
+
+Vue  vue-cli  vue-router  vuex  axios  ElmentUI
+Vue  vue 脚手架  vue路由  vuex  axios  饿了么UI框架
+
+react create-react-appp     react-router-dom  redux    axios    antd
+
+闭包
+1. 闭包就是函数嵌套函数，两种特殊情况
+   函数做为参数被传入，函数作为返回值被返回
+
+2. 闭包的作用
+   1. 函数外部可以访问函数内部的局部变量
+   2. 创建局部作用域，避免变量全局污染（常用于封装）
+
+3. 闭包的缺点
+    使用不恰当，可能会造成内存泄露。（闭包中的局部变量不会被销毁）
+
+
+
+webpack 是干什么的？
+前端静态打包器，分析项目各种依赖，生成依赖图，并根据依赖关系打包生成浏览器可执行的文件
+（html，css，js，图片，声音，视频，字体）
+
+jquery是如何实现无new化操作的
+在jquery构造函数中
+return new jQuery.fn.init(selector);
+重新指向init函数的原型
+jQuery.fn.init.prototype = jQuery.prototype;
+
+jquery的ready事件和window.onload 事件的区别？
+1. ready 要比onload先执行，
+ready在dom树构建完毕有已经执行
+onload 还要经过，构造css树，构建渲染树，渲染后执行onload
+
+javascript对象继承的方式有哪些？
+class类的extend 方法基础  调用父类构造函数 super(）
+
+函数类的继承
+B继承A
+1. 指定b的原型 B.prototype = Object.create(A.prototype)
+2. 还原构造函数 B.prototype.consturctor = B
+3. function B（）{
+     A.call(this,arg);//调用父类的构造函数
+   }
+
+如果判断对象的类型
+typeof
+constructor
+instanceOf
+Array.is
+Object.prototype.toString.call(obj,null);
+
+
+js当我们new 一个对象都发生了什么
+1. 创建了空的对象
+2. 对象的__proto__属性指向 构造函数的Prototype
+3. 指向构造函数并this冒充
+function Person（name）{this.name = name}
+var p = new Person("mumu");
+
+1. var p = {}
+2. p.__proto__ = Person.prototype;
+3. Person.call(p,name);
+
+
+webpack 的插件与loader的区别
+loader 让webpack拥有处理模块module的能力（默认只有处理js能力，css-loader 拥有处理css的能力）
+
+plugin 让webpack在执行的生命周期过程中拥有其他的能力（压缩，优化）
+
+
+你都用过哪些webpack loader
+css-loader 处理分析css
+style-loader 把css 插入到style
+mini-css-extract-plugin .loader 抽取css
+
+mini-css-extract-plugin 抽取css
+optimizeCssAssetsWebpackPlugin 优化css资源
+htmlWebpackPlugin 处理
+
+vue如何实现缓存 
+keep-alive  
+   include 可以包含哪些组件
+   exclude 排除哪些组件
+
+vuex哪些模块
+   state 状态		$store.state			mapState
+  getters 获取器		$store.gettrs			mapGetters
+  mutations 改变器		$store.commit(xxx,data)		mapMutations
+  actions 动作(异步)		$store.dispatch(xxx,data)		mapActions
+  modules模块
+
+组件传参
+ 父传子 props 属性
+子传父 $emit 事件
+非父子  空 vue对象   vuex
+
+
+浏览器会自动缓存 文件名称一致的文件，第二次请求时候几直接从缓存中加载，不用从服务
+
+当服务文件发生更新时候，文件的名称改变，浏览器自然不会缓存这个文件
+（内容不变，文件名，内容变了，文件名也变）
+
+hash 随机的值，只有一个文件发生变化，打包时候hash值就变化
+contenthash   内容发生变化，只对当前文件的hash产生变化
+ chunkhash 针对多入口，出口来说
+
+
+
+webpack 是什么？你用过没有
+前端静态模块打包器。当然用过
+
+webpack 插件和loader的区别
+loader 让webpack 拥有处理非js的其他类型文件能力
+插件在webpack生命周期过程拥有其他额外操作能力（压缩，拷贝）
+
+webpack 你都用过哪些插件
+devServer
+html-webpack-plugin
+webpack-clean-plugin
+css抽出压缩插件
+css优化插件
+
+
+webpack 你用过哪些loader
+css-loader style-loader  css抽出自带loader  less-loader
+
+webpack 如何有效的配合浏览器的缓存机制
+
+hash   contenthash  chunkhash 
+ 
+
+
+
+
+react 环境配置
+1. 安装插件 
+npm i babel-loader @babel/core @babel/preset-env  @babel/plugin-transform-runtime   @babel/preset-react -D
+babel-loader 加载器
+@babel/core ES6 转ES5 核心
+@babel/preset-env ES6转ES5的环境
+@babel/plugin-transform-runtime 动态懒加载
+@babel/preset-react react运行环境
+
+2. 安装react 
+npm i react react-dom -S
+
+3. 配置webpack.config.js
+{ 
+ test: /\.(js|jsx)$/, 
+use:['babel-loader'],
+exclude: /node_modules/ 
+},
+
+4. babel 配置
+新建.babelrc
+{
+  "presets": ["@babel/preset-env","@babel/preset-react"],
+}
+
+5. 写react代码 
+
+
+
+
+
+
+
+1. 使用vue3.0 导入
+import {ref,onUpdated,onMounted,reactive} from 'vue';
+2. vue3.0 如何启动的
+createApp(App).use(store).use(router).mount("#app")
+
+git 命令
+
+git 全局配置
+git config  --global user.name "name"
+git config  --global user.email  "....@qq.com"
+
+git 添加到暂存盘
+git add .  
+
+
+git 从暂存盘恢复
+git checkout filename
+
+git 添加版本库
+git commit  -m ""
+
+
+查看版本记录
+git log
+
+
+查看所有相关版本记录
+git  reflog
+ 
+切换版本
+ 
+git  reset  --hard   版本号
+git  reset  --hard  HEAD  ^^
+切换分支
+ git  checkout  
+创建分支
+ git  branch  
+git  checkout  -b
+
+分支合并
+ git  merge
+
+标签创建
+ git  tag  XX
+git  tag  查看
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
