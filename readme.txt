@@ -1,4 +1,0 @@
-我喜欢git
-还喜欢vue
-我还喜欢react
-我喜欢photoshop
