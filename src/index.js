@@ -1,13 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+// 导入库css
+import 'antd/dist/antd.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import zhCN from 'antd/lib/locale/zh_CN';
+import {ConfigProvider} from 'antd'
+// 导入mockjs
+import "./api/mock"
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
+  <ConfigProvider locale={zhCN}>
     <App />
-  </React.StrictMode>,
+  </ConfigProvider>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 
